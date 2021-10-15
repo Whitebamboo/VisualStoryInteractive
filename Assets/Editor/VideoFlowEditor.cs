@@ -4,10 +4,62 @@ using System.Collections.Generic;
 
 public class VideoFlowEditor : EditorWindow
 {
+    //Data class for each node window
+    class Node
+    {
+        int m_id;
+        VideoNode m_data;
+        Rect m_rect;
+
+        public Node(int id, VideoNode data, Rect rect)
+        {
+            m_id = id;
+            m_data = data;
+            m_rect = rect;
+        }
+
+        public int GetId()
+        {
+            return m_id;
+        }
+
+        public Rect GetRect()
+        {
+            return m_rect;
+        }
+
+        public Vector3 GetUpperPoint()
+        {
+            return new Vector3(m_rect.x + m_rect.width / 2, m_rect.y, 0);
+        }
+
+        public Vector3 GetBottomPoint()
+        {
+            return new Vector3(m_rect.x + m_rect.width / 2, m_rect.y + m_rect.height, 0);
+        }
+
+        public Vector3 GetLeftPoint()
+        {
+            return new Vector3(m_rect.x, m_rect.y + m_rect.height / 2, 0);
+        }
+
+        public Vector3 GetRightPoint()
+        {
+            return new Vector3(m_rect.x + m_rect.width, m_rect.y + m_rect.height / 2, 0);
+        }
+    }
+
     VideoNode m_startNode = null;
 
     Rect window1;
     Rect window2;
+
+    const float SPACING_X = 30;
+    const float SPACING_Y = 30;
+    const float START_X = 20;
+
+    const float ELEMENT_HEIGHT = 100;
+    const float ELEMENT_WIDTH = 100;
 
 
     [MenuItem("Tool/Video Flow Editor")]
@@ -22,22 +74,23 @@ public class VideoFlowEditor : EditorWindow
     public void Init()
     {
         this.maximized = true;
-        Debug.Log(this.maxSize);
+
+        float startY = this.maxSize.y / 2;
 
         VideoNode startNode = AssetDatabase.LoadAssetAtPath<VideoNode>("Assets/Data/Video1.asset");
-
         Queue<VideoNode> list = new Queue<VideoNode>();
         list.Enqueue(startNode);
-        
+
+        int count = 0; 
+
         while(list.Count > 0)
         {
             VideoNode node = list.Dequeue();
-
+            window1 = new Rect(10, 10, 100, 100);
         }
 
 
-        window1 = new Rect(10, 10, 100, 100);
-        window2 = new Rect(210, 210, 100, 100);
+        
     }
 
     void OnGUI()
