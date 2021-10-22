@@ -17,7 +17,14 @@ public class OptionButton : MonoBehaviour
         m_clickCallBack = callBack;
         m_edge = edge;
 
-        title.text = edge.OptionTitle;
+        if(string.IsNullOrEmpty(edge.OptionTitle))
+        {
+            title.text = edge.name;
+        }
+        else
+        {
+            title.text = edge.OptionTitle;
+        }
     }
 
     private void Start()

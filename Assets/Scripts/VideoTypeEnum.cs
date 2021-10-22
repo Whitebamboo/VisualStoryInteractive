@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum VideoTypeEnum 
 {
-    Normal,
-    Business,
-    Devil,
-    Start
+    Boring,
+    TikTok,
+    Prank,
+    Other
 }

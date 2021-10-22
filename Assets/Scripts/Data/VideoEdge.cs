@@ -2,18 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[CreateAssetMenu(fileName = "Edge", menuName = "VideoEdge")]
-public class VideoEdge
+[CreateAssetMenu(fileName = "Edge", menuName = "VideoEdge")]
+public class VideoEdge : ScriptableObject
 {
-    VideoNode nextNode;
-    string optionTitle;
+    [SerializeField] VideoNode nextNode;
+    [SerializeField]  string optionTitle;
 
     public VideoNode NextNode => nextNode;
     public string OptionTitle => optionTitle;
-
-    public VideoEdge(VideoNode nextNode, string optionTitle)
-    {
-        this.nextNode = nextNode;
-        this.optionTitle = optionTitle;
-    }
 }

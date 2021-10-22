@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 public class MainCanvas : MonoBehaviour
 {
     public OptionButton opitionButtonPrefab;
     public Transform optionContentHolder;
+    public TextMeshProUGUI debugTitle;
 
     public void AddOptionButton(VideoEdge edge, Action<VideoEdge> callback)
     {
@@ -20,5 +22,11 @@ public class MainCanvas : MonoBehaviour
         {
             Destroy(optionContentHolder.GetChild(i).gameObject);
         }
+    }
+
+    public void ShowDebugWindow(string title)
+    {
+        debugTitle.transform.parent.gameObject.SetActive(true);
+        debugTitle.text = title;
     }
 }
