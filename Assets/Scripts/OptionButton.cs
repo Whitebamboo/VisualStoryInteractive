@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Video;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class OptionButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -15,6 +16,9 @@ public class OptionButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     Action<VideoEdge> m_clickCallBack;
     VideoEdge m_edge;
+    CanvasGroup m_group;
+
+    bool isPointerEnter;
 
     public void Init(VideoEdge edge, Action<VideoEdge> callBack)
     {
@@ -29,11 +33,25 @@ public class OptionButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         {
             title.text = edge.OptionTitle;
         }
+        title.text = "";
     }
 
-    private void Start()
+    void Start()
     {
+        m_group = GetComponent<CanvasGroup>();
+        m_group.alpha = 0;
+
         GetVideo();
+
+        m_group.DOFade(1, 1.5f);
+    }
+
+    void Update()
+    {
+        if(videoPlayer.frame > 150)
+        {
+            videoPlayer.frame = 10;
+        }
     }
 
     void GetVideo()
@@ -44,11 +62,6 @@ public class OptionButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         videoPlayer.targetTexture = tex;
 
         StartCoroutine(SetThumbNail(m_edge.NextNode.Clip));
-        //videoPlayer.clip = m_edge.NextNode.Clip;
-        //videoPlayer.frame = 100;
-        //videoPlayer.Play();
-
-        //videoPlayer.Stop();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -67,23 +80,28 @@ public class OptionButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         if (clip != null)
         {
             videoPlayer.clip = clip;
-            videoPlayer.frame = 100;
             videoPlayer.Prepare();
             yield return new WaitUntil(() => videoPlayer.isPrepared);
             videoPlayer.Play();
             yield return new WaitUntil(() => videoPlayer.isPlaying);
-            yield return new WaitForSeconds(0.3f);
-            videoPlayer.Stop();
+            yield return new WaitForSeconds(0.2f);
+            videoPlayer.Pause();
         }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        
+        isPointerEnter = true;
+
+        videoPlayer.Play();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        
+        isPointerEnter = false;
+
+        videoPlayer.Pause();
     }
+
+
 }

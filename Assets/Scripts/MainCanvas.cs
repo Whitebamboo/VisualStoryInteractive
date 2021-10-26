@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
+using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class MainCanvas : MonoBehaviour
 {
@@ -11,10 +13,15 @@ public class MainCanvas : MonoBehaviour
     public Transform optionContentHolder;
     public TextMeshProUGUI debugTitle;
     public GameObject blackBg;
+    public GameObject endingGroup;
+    public Button restart;
+    public Button quit;
+    public TextMeshProUGUI endingText;
 
     public void ShowBlackBg()
     {
         blackBg.SetActive(true);
+        blackBg.GetComponent<Image>().DOFade(0, 0.5f).From();
     }
 
     public void AddOptionButton(VideoEdge edge, Action<VideoEdge> callback)
@@ -39,4 +46,24 @@ public class MainCanvas : MonoBehaviour
         debugTitle.text = title;
     }
 
+    public void ShowEnding(VideoTypeEnum type)
+    {
+        endingGroup.SetActive(true);
+        endingGroup.GetComponent<CanvasGroup>().DOFade(0, 1f).From();
+        restart.onClick.AddListener(() => { SceneManager.LoadScene("Main"); });
+        quit.onClick.AddListener(() => { Application.Quit(); });
+
+        switch (type)
+        {
+            case VideoTypeEnum.Boring:
+                endingText.text = "Ending: From Vlogging to Starting C++";
+                break;
+            case VideoTypeEnum.TikTok:
+                endingText.text = "Ending: The Best Seller";
+                break;
+            case VideoTypeEnum.Prank:
+                endingText.text = "Ending: The one who prank finally get pranked";
+                break;
+        }
+    }
 }

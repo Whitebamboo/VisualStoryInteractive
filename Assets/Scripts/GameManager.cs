@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     VideoNode currentNode;
 
-    private void Start()
+    void Start()
     {
         currentNode = startVideo;
         StartCoroutine(PlayNodeClip(currentNode.Clip));
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("No Edge");
+            mainCanvas.ShowEnding(currentNode.VideoType);
         }
     }
 
