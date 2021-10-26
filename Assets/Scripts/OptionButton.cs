@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Video;
+using UnityEngine.EventSystems;
 
-public class OptionButton : MonoBehaviour
+public class OptionButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public TextMeshProUGUI title;
     public RawImage textureHolder;
@@ -32,17 +33,6 @@ public class OptionButton : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(() => 
-        {
-            if(m_clickCallBack == null)
-            {
-                Debug.LogError("Option call back is null");
-                return;
-            }
-
-            m_clickCallBack.Invoke(m_edge);
-        });
-
         GetVideo();
     }
 
@@ -53,7 +43,47 @@ public class OptionButton : MonoBehaviour
         textureHolder.texture = tex;
         videoPlayer.targetTexture = tex;
 
-        videoPlayer.clip = m_edge.NextNode.Clip;
-        videoPlayer.Play();
+        StartCoroutine(SetThumbNail(m_edge.NextNode.Clip));
+        //videoPlayer.clip = m_edge.NextNode.Clip;
+        //videoPlayer.frame = 100;
+        //videoPlayer.Play();
+
+        //videoPlayer.Stop();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (m_clickCallBack == null)
+        {
+            Debug.LogError("Option call back is null");
+            return;
+        }
+
+        m_clickCallBack.Invoke(m_edge);
+    }
+
+    IEnumerator SetThumbNail(VideoClip clip)
+    {
+        if (clip != null)
+        {
+            videoPlayer.clip = clip;
+            videoPlayer.frame = 100;
+            videoPlayer.Prepare();
+            yield return new WaitUntil(() => videoPlayer.isPrepared);
+            videoPlayer.Play();
+            yield return new WaitUntil(() => videoPlayer.isPlaying);
+            yield return new WaitForSeconds(0.3f);
+            videoPlayer.Stop();
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        
     }
 }
