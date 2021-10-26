@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Prank1
   m_EditorClassIdentifier: 
   videoType: 0
-  clip: {fileID: 0}
+  clip: {fileID: 32900000, guid: 0b9f069514e510940aac507a861cfd6d, type: 3}
   edges:
+  - {fileID: 11400000, guid: c8cfa8f2f5e8ae842a338b428388b7e8, type: 2}
   - {fileID: 11400000, guid: b4ff61d0ed3fbbb4ba928e8f8c4a7d9d, type: 2}
   url: 

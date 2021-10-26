@@ -4,11 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
+
 public class MainCanvas : MonoBehaviour
 {
     public OptionButton opitionButtonPrefab;
     public Transform optionContentHolder;
     public TextMeshProUGUI debugTitle;
+    public GameObject blackBg;
+
+    public void ShowBlackBg()
+    {
+        blackBg.SetActive(true);
+    }
 
     public void AddOptionButton(VideoEdge edge, Action<VideoEdge> callback)
     {
@@ -18,6 +25,8 @@ public class MainCanvas : MonoBehaviour
 
     public void ClearOptions()
     {
+        blackBg.SetActive(false);
+
         for (int i = optionContentHolder.childCount - 1; i >= 0; i--)
         {
             Destroy(optionContentHolder.GetChild(i).gameObject);
@@ -29,4 +38,5 @@ public class MainCanvas : MonoBehaviour
         debugTitle.transform.parent.gameObject.SetActive(true);
         debugTitle.text = title;
     }
+
 }

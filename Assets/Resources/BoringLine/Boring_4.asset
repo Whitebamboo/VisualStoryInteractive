@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boring_4
   m_EditorClassIdentifier: 
   videoType: 0
-  clip: {fileID: 0}
+  clip: {fileID: 32900000, guid: 2b02b0d9d66585d4c8cbe7e651cf44b2, type: 3}
   edges:
   - {fileID: 11400000, guid: 40ba6da107953594b8be8ce7188e08f1, type: 2}
   url: 

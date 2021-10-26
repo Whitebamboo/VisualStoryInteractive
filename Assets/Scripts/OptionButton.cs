@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Video;
 
 public class OptionButton : MonoBehaviour
 {
     public TextMeshProUGUI title;
+    public RawImage textureHolder;
+    public VideoPlayer videoPlayer;
 
     Action<VideoEdge> m_clickCallBack;
     VideoEdge m_edge;
@@ -39,5 +42,18 @@ public class OptionButton : MonoBehaviour
 
             m_clickCallBack.Invoke(m_edge);
         });
+
+        GetVideo();
+    }
+
+    void GetVideo()
+    {
+        RenderTexture tex = new RenderTexture(480, 270, 16, RenderTextureFormat.ARGB32);
+        tex.Create();
+        textureHolder.texture = tex;
+        videoPlayer.targetTexture = tex;
+
+        videoPlayer.clip = m_edge.NextNode.Clip;
+        videoPlayer.Play();
     }
 }

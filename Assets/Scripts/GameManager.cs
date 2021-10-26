@@ -38,16 +38,13 @@ public class GameManager : MonoBehaviour
 
     void CheckNextStage(VideoPlayer source)
     {
-        //No Edge transition for now
-        //if (currentNode.Edges.Length == 1)
-        //{
-        //    Debug.Log("Next video");
-        //}
         if (currentNode.Edges.Length >= 1)
         {
+            mainCanvas.ShowBlackBg();
+
             foreach (VideoEdge edge in currentNode.Edges)
             {
-                mainCanvas.AddOptionButton(edge, OnOptionClicked);
+                mainCanvas.AddOptionButton(edge, OnOptionClicked);                
             }
         }
         else
@@ -61,5 +58,13 @@ public class GameManager : MonoBehaviour
         mainCanvas.ClearOptions();
         currentNode = edge.NextNode;
         StartCoroutine(PlayNodeClip(currentNode.Clip));
+    }
+
+
+    public void SkipToEnd()
+    {
+        ulong frameCount = videoPlayer.frameCount;
+
+        videoPlayer.frame = (long)frameCount - 1;
     }
 }

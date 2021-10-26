@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   videoType: 3
-  clip: {fileID: 0}
+  clip: {fileID: 32900000, guid: b4ff4e5d401394642832bcf7b562a4bf, type: 3}
   edges:
   - {fileID: 11400000, guid: 147cf09a0d6e1bb419826496e00e2d8a, type: 2}
   - {fileID: 11400000, guid: e5b89c077f8e1a540bca9fef8c35edf9, type: 2}

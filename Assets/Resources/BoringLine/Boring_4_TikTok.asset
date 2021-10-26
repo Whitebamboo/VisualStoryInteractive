@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boring_4_TikTok
   m_EditorClassIdentifier: 
   videoType: 0
-  clip: {fileID: 0}
+  clip: {fileID: 32900000, guid: 1801fb063dc641841b529267d9481e0f, type: 3}
   edges:
   - {fileID: 11400000, guid: 5f59ee695e1489140a34031edbf13dca, type: 2}
   - {fileID: 11400000, guid: d0d594cdd74cda748b023cab640d0dfd, type: 2}
