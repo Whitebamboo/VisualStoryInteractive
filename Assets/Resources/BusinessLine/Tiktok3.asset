@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tiktok3
   m_EditorClassIdentifier: 
   videoType: 1
-  clip: {fileID: 32900000, guid: 1add12892f72e374f94f3bb56823a375, type: 3}
+  clip: {fileID: 32900000, guid: 655e5977d66005b43b3df3b30d5cfb0d, type: 3}
   edges: []
   url: 

@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aaf2a761d93e944abfb26b6d2b5a529, type: 3}
-  m_Name: Boring_5
+  m_Script: {fileID: 11500000, guid: 42d60c4abd122fb4ea74e2bbac9348ba, type: 3}
+  m_Name: Boring4_to_Prank1
   m_EditorClassIdentifier: 
-  videoType: 0
-  clip: {fileID: 32900000, guid: e3e4036ad32f42045b1f06832a1a6af3, type: 3}
-  edges: []
-  url: 
+  nextNode: {fileID: 11400000, guid: 1681036691ed0404d8faab203d9a96ca, type: 2}
+  optionTitle: 

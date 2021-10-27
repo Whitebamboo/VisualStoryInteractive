@@ -17,6 +17,15 @@ public class MainCanvas : MonoBehaviour
     public Button restart;
     public Button quit;
     public TextMeshProUGUI endingText;
+    public GameObject skipButton;
+
+    void Update()
+    {
+        if(Input.GetKey(KeyCode.Q))
+        {
+            skipButton.SetActive(true);
+        }
+    }
 
     public void ShowBlackBg()
     {
